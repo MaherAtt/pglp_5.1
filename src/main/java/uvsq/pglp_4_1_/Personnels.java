@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public final class Personnels implements GroupPersonnels {
 	
-	private  String Nom;
-	private  String Prenom;
-	private  String fonction;
-	private  java.time.LocalDate dateNaissance;
-	private  ArrayList<Integer> numerosDeTel;
+	public  String Nom;
+	public  String Prenom;
+	public  String fonction;
+	public  java.time.LocalDate dateNaissance;
+	public  ArrayList<Integer> numerosDeTel;
 	
 	Personnels(Builder bu)
 	{
