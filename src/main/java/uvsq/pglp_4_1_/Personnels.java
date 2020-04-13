@@ -59,11 +59,11 @@ public final class Personnels implements GroupPersonnels,Serializable {
 		
 	}
 	
-	public void serialize()
+	public void serialize(String fileDest)
 	{
 		try {
 	         FileOutputStream fileOut =
-	         new FileOutputStream("employee.txt");
+	         new FileOutputStream(fileDest);
 	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
 	         out.writeObject(this);
 	         out.close();
@@ -74,11 +74,11 @@ public final class Personnels implements GroupPersonnels,Serializable {
 	      }
 	}
 	
-	public static Personnels deserialize()
+	public static Personnels deserialize(String fileDest)
 	{
 		Personnels e=null;
 		try {
-	         FileInputStream fileIn = new FileInputStream("employee.ser");
+	         FileInputStream fileIn = new FileInputStream(fileDest);
 	         ObjectInputStream in = new ObjectInputStream(fileIn);
 	         e = (Personnels) in.readObject();
 	         in.close();

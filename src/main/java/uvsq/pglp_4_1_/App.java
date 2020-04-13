@@ -17,7 +17,7 @@ public class App
     	Personnels p4=new Personnels(new Builder("Maher4","Attouche",LocalDate.now()));
     	Personnels p5=new Personnels(new Builder("Maher5","Attouche",LocalDate.now()));
 
-    	CompositePersonnels cp3=new CompositePersonnels(3);
+    	/*CompositePersonnels cp3=new CompositePersonnels(3);
     	CompositePersonnels cp2=new CompositePersonnels(2);
     	
     	
@@ -35,7 +35,11 @@ public class App
     	{
     	    ((GroupPersonnels) i.next()).print();
     	}
-
+		*/
+    	p1.serialize("employee.txt");
+    	Personnels ph=null;
+    	ph=Personnels.deserialize("employee.txt");
+    	ph.print();
     	
     	
     }

@@ -92,5 +92,15 @@ public class PersonnelsTest {
 				"Nom:Maher5\n", outContent.toString());
     	
 	}
+	
+	@Test
+	public void testSerialize() {
+    	Personnels p1=new Personnels(new Builder("Maher1","Attouche",LocalDate.now()));
+		p1.serialize("employee.txt");
+    	Personnels ph=null;
+    	ph=Personnels.deserialize("employee.txt");
+    	assert(ph.Nom.equals("Maher1") && ph.Prenom.equals("Attouche") && ph.dateNaissance.equals(LocalDate.now()));
+    	
+	}
 
 }
