@@ -1,8 +1,14 @@
 package uvsq.pglp_4_1_;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Personnels implements GroupPersonnels {
+public final class Personnels implements GroupPersonnels,Serializable {
 	
 	public  String Nom;
 	public  String Prenom;
@@ -53,5 +59,40 @@ public final class Personnels implements GroupPersonnels {
 		
 	}
 	
+	public void serialize()
+	{
+		try {
+	         FileOutputStream fileOut =
+	         new FileOutputStream("employee.txt");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(this);
+	         out.close();
+	         fileOut.close();
+	         System.out.printf("Serialized data is saved in /tmp/employee.ser");
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	      }
+	}
+	
+	public static Personnels deserialize()
+	{
+		Personnels e=null;
+		try {
+	         FileInputStream fileIn = new FileInputStream("employee.ser");
+	         ObjectInputStream in = new ObjectInputStream(fileIn);
+	         e = (Personnels) in.readObject();
+	         in.close();
+	         fileIn.close();
+	         return e;
+	      } catch (IOException i) {
+	         i.printStackTrace();
+	         return null;
+	      } catch (ClassNotFoundException c) {
+	         System.out.println("Employee class not found");
+	         c.printStackTrace();
+	         return null;
+	      }
+	    
+	}
 
 }

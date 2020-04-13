@@ -1,6 +1,7 @@
 package uvsq.pglp_4_1_;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class CompositePersonnels implements GroupPersonnels {
+public class CompositePersonnels implements GroupPersonnels,Serializable {
 
 	
 	int id;
