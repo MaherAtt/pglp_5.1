@@ -1,6 +1,7 @@
 package uvsq.pglp_4_1_;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import uvsq.pglp_4_1_.Personnels.Builder;
@@ -13,6 +14,7 @@ public class App
 {
     public static void main( String[] args )
     {
+    	MySerialize.serialize(new ArrayList<GroupPersonnels>(), "Personnels.txt");
     	/*Personnels p1=new Personnels(new Builder("Maher1","Attouche",LocalDate.now()));
     	Personnels p4=new Personnels(new Builder("Maher4","Attouche",LocalDate.now()));
     	Personnels p5=new Personnels(new Builder("Maher5","Attouche",LocalDate.now()));

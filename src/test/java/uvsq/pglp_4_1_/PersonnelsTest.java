@@ -3,10 +3,12 @@ package uvsq.pglp_4_1_;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.junit.Test;
@@ -94,21 +96,26 @@ public class PersonnelsTest {
 	}
 	
 	@Test
-	public void testSerialize() {
+	public void testSerializePersonnels() throws FileNotFoundException {
+    	PersonnelsDao dao=(PersonnelsDao) DaoFactory.getGroupDao();
     	Personnels p1=new Personnels(new Builder("Maher1","Attouche",LocalDate.now()));
-		p1.serialize("employee.txt");
-    	Personnels ph=null;
-    	ph=Personnels.deserialize("employee.txt");
-    	assert(ph.Nom.equals("Maher1") && ph.Prenom.equals("Attouche") && ph.dateNaissance.equals(LocalDate.now()));   	
+		dao.create(p1);
+    	ArrayList<GroupPersonnels> phd=null;
+    	phd=MySerialize.deserialize("Personnels.txt");
+    	Personnels ph=(Personnels) phd.get(0);
+    	assert(phd.size()==1 && ph.Nom.equals("Maher1") && ph.Prenom.equals("Attouche") && ph.dateNaissance.equals(LocalDate.now()));   	
 	}
 	
 	@Test
-	public void testSerializeComposite() {
+	public void testSerializeComposite() throws FileNotFoundException {
+    	PersonnelsDao dao=(PersonnelsDao) DaoFactory.getGroupDao();
 		CompositePersonnels cp3=new CompositePersonnels(3);
 	    Personnels p1=new Personnels.Builder("Maher1", "Attouche", LocalDate.now()).AddTel(555).build();
     	cp3.add(p1);
-    	cp3.serialize("composite.txt");
-    	CompositePersonnels cp=CompositePersonnels.deserialize("composite.txt");
+    	dao.create(cp3);
+    	ArrayList<GroupPersonnels> phd= MySerialize.deserialize("Personnels.txt");
+    
+    	CompositePersonnels cp=(CompositePersonnels) phd.get(0);
     	assert(cp.personnes.size()==1 && cp.personnes.get(0).equals(p1));	
 	}
 

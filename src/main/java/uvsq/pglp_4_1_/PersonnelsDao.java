@@ -1,27 +1,37 @@
 package uvsq.pglp_4_1_;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class PersonnelsDao implements Dao<GroupPersonnels> {
 
+	
 	public boolean create(GroupPersonnels obj) {
-		ArrayList<GroupPersonnels> listPers=MySerialize.deserialize("personnel.txt");
+		ArrayList<GroupPersonnels> listPers;
+		try {
+			listPers=MySerialize.deserialize("Personnels.txt");
+		}
+		catch (Exception e)
+		{
+			listPers= new ArrayList<GroupPersonnels>();
+		}
 		listPers.add(obj);
-		MySerialize.serialize(listPers,"personnel.txt");	
+		MySerialize.serialize(listPers,"Personnels.txt");	
 		return true;
 	}
 
 	public boolean delete(int toDelete) {
-		ArrayList<GroupPersonnels> listPers=MySerialize.deserialize("personnel.txt");
+		ArrayList<GroupPersonnels> listPers=MySerialize.deserialize("Personnels.txt");
 	    listPers.remove(toDelete);
-		MySerialize.serialize(listPers,"personnel.txt");	
+		MySerialize.serialize(listPers,"Personnels.txt");	
 		return true;
 	}
 
 	public boolean update(GroupPersonnels obj,int pos) {
 		ArrayList<GroupPersonnels> listPers=MySerialize.deserialize("personnel.txt");
 	    listPers.set(pos, obj);
-		MySerialize.serialize(listPers,"personnel.txt");
+		MySerialize.serialize(listPers,"Personnels.txt");
 		return false;
 	}
 
