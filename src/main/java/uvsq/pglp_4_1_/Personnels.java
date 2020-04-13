@@ -59,40 +59,6 @@ public final class Personnels implements GroupPersonnels,Serializable {
 		
 	}
 	
-	public void serialize(String fileDest)
-	{
-		try {
-	         FileOutputStream fileOut =
-	         new FileOutputStream(fileDest);
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(this);
-	         out.close();
-	         fileOut.close();
-	         System.out.printf("Serialized data is saved in /tmp/employee.ser");
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	      }
-	}
 	
-	public static Personnels deserialize(String fileDest)
-	{
-		Personnels e=null;
-		try {
-	         FileInputStream fileIn = new FileInputStream(fileDest);
-	         ObjectInputStream in = new ObjectInputStream(fileIn);
-	         e = (Personnels) in.readObject();
-	         in.close();
-	         fileIn.close();
-	         return e;
-	      } catch (IOException i) {
-	         i.printStackTrace();
-	         return null;
-	      } catch (ClassNotFoundException c) {
-	         System.out.println("Employee class not found");
-	         c.printStackTrace();
-	         return null;
-	      }
-	    
-	}
 
 }
