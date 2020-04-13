@@ -31,7 +31,7 @@ public class App
     	
     	AffichageGroup affgrp= new AffichageGroup(cp3);
     	
-    	for(Iterator<AffichageGroup> i=affgrp.iterator();i.hasNext();)
+    	for(Iterator i=affgrp.iterator();i.hasNext();)
     	{
     	    ((GroupPersonnels) i.next()).print();
     	}

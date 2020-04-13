@@ -14,24 +14,26 @@ public class AffichageGroup {
 	
 	public Iterator iterator()
 	{
-		return new GrpIterator();
+		return new GrpIterator(groupedepers) ;
 	}
 	
 	private class GrpIterator implements Iterator {
 		int index;
 
-		public GrpIterator()
+		public GrpIterator(GroupPersonnels groupedepers)
 		{
+			grp.add(groupedepers);
 			int verif=0;
-			while(verif<=grp.size())
+			while(verif<grp.size())
 			{ 	
-				grp.add(groupedepers);
-				verif++;
-			if(groupedepers instanceof CompositePersonnels)
-			for(int i=0;i<((CompositePersonnels) groupedepers).personnes.size();i++)
+				
+				
+			if(grp.get(verif) instanceof CompositePersonnels)
+			for(int i=0;i<((CompositePersonnels) grp.get(verif)).personnes.size();i++)
 			{
-				grp.add(((CompositePersonnels) groupedepers).personnes.get(i));
+				grp.add(((CompositePersonnels) grp.get(verif)).personnes.get(i));
 			}
+			verif++;
 			}
 			
 		}

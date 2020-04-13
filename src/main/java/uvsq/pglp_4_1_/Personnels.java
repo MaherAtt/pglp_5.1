@@ -33,6 +33,7 @@ public final class Personnels implements GroupPersonnels {
 			this.dateNaissance=Birth;
 			this.Nom=Name;
 			this.Prenom=Surname;
+			this.numerosDeTel=new ArrayList<Integer>();
 		}
 		
 		public Builder AddTel(int numero)
