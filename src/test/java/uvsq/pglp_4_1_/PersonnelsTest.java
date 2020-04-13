@@ -99,8 +99,17 @@ public class PersonnelsTest {
 		p1.serialize("employee.txt");
     	Personnels ph=null;
     	ph=Personnels.deserialize("employee.txt");
-    	assert(ph.Nom.equals("Maher1") && ph.Prenom.equals("Attouche") && ph.dateNaissance.equals(LocalDate.now()));
-    	
+    	assert(ph.Nom.equals("Maher1") && ph.Prenom.equals("Attouche") && ph.dateNaissance.equals(LocalDate.now()));   	
+	}
+	
+	@Test
+	public void testSerializeComposite() {
+		CompositePersonnels cp3=new CompositePersonnels(3);
+	    Personnels p1=new Personnels.Builder("Maher1", "Attouche", LocalDate.now()).AddTel(555).build();
+    	cp3.add(p1);
+    	cp3.serialize("composite.txt");
+    	CompositePersonnels cp=CompositePersonnels.deserialize("composite.txt");
+    	assert(cp.personnes.size()==1 && cp.personnes.get(0).equals(p1));	
 	}
 
 }
